@@ -14,14 +14,14 @@ import java.util.Base64;
 @RequestMapping("auth")
 public class HealthController {
 
-    final static String TOKEN = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ.SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c";
+    final static TokenResponse TOKEN = new TokenResponse("eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ.SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c");
 
-    @PostMapping("/login")
-    public String login(@RequestParam Integer app, @RequestParam String username, @RequestParam String password){
+    @GetMapping(value = "/login")
+    public TokenResponse login(@RequestParam Integer app, @RequestParam String username, @RequestParam String password) {
 
-        if (username.equals("11111111-1")){
+        if (username.equals("11111111-1")) {
             return TOKEN;
-        }else{
+        } else {
             throw new ResponseStatusException(HttpStatus.UNAUTHORIZED, "Check user credentials");
         }
     }
